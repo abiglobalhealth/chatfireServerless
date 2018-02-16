@@ -24,10 +24,9 @@ const serviceAccount = require('./serviceAccount.json') // temporarily required
 module.exports = chatFireServerless({
   serviceAccount, //temporarily required
   authenticate: payload => {
-  //  do your authentication/authorization and return the users id.
-  //  for example:
-    return fetch('https://api.mybackend.com', payload)
-      .then(user => user.id)
+  //  do your authentication/authorization and return the users id. For example:
+  //  return fetch('https://api.mybackend.com', payload)
+  //    .then(user => user.id)
   })
 })
 ```

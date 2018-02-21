@@ -1,7 +1,7 @@
 # chatfireServerless
-Serverless chat backend
+An ultra-simple chat backend built on Firebase and Firebase Cloud Functions.
 
-## get started
+### Quick start
 ```shell
 # use the firebase cli to initialize a project
 yarn global add firebase-tools
@@ -12,7 +12,7 @@ firebase init functions
 cd functions
 yarn add chatFireServerless
 ```
-Then replace functions/index.js with this:
+Then replace `functions/index.js` with this:
 ```js
 const chatFireServerless = require('chatFireServerless')
 
@@ -37,10 +37,7 @@ Then just
 ```shell
 firebase deploy
 ```
-## Description
-chatfire is an ultra-simple chat backend built on Firebase and Firebase Cloud Functions.
-
-Here's how it works:
+### How it works
 ![untitled diagram 4](https://user-images.githubusercontent.com/1440796/36492404-594b4d3a-172d-11e8-902b-3f31caea28c9.png)
 1. Clients call the authenticate endpoint with some payload containing user data, invoking your `authenticate` function
 2. The endpoint generates and returns database credentials scoped to the paramaters returned by your `authenticate` function. This must include a `uid` and may also include custom claims (see below for more info).

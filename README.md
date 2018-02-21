@@ -68,7 +68,7 @@ This are the minimum security rules you want in place:
   }
 }
 ```
-Check the examples folder for more complex setups
+The examples folder has more complex setups
 
 ### Advanced configuration
 key  | required | description

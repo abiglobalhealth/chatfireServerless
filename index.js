@@ -25,6 +25,7 @@ module.exports = config => {
 		return authPromise(query) 
 			.then(({ uid, additionalClaims }) => admin.auth().createCustomToken(uid, additionalClaims))
 			.then(token => res.status(200).send({ token }))
+			.catch(e => res.status(e.status || 500).send(e))
 	})
 	
 	// listen for new messages and notify our backend

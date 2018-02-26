@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.4",
     "lodash.compose": "^2.4.1"
   },
   "name": "chatfireserverless",

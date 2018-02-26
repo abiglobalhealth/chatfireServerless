@@ -2,6 +2,8 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const compose = require('lodash.compose')
+const cors = require('cors')({ origin: true });
+
 const promisify = func => compose(Promise.resolve.bind(Promise), func)
 
 module.exports = config => {
@@ -16,16 +18,19 @@ module.exports = config => {
 	// calls our backend to validate JWT
 	// if it passes, generate firebase token for the user
 	const authenticate = functions.https.onRequest((req, res) => {
-		const { method, query } = req
-		if (method !== 'GET') 
-			return res.status(405).end()
+		cors(req, res, () => {
+			const { method, query } = req
 
-		const authPromise = promisify(config.authenticate) // in case it returns a non-promise
+			if (method !== 'GET') 
+				return res.status(405).end()
 
-		return authPromise(query) 
-			.then(({ uid, additionalClaims }) => admin.auth().createCustomToken(uid, additionalClaims))
-			.then(token => res.status(200).send({ token }))
-			.catch(e => res.status(e.status || 500).send(e))
+			const authPromise = promisify(config.authenticate) // in case it returns a non-promise
+
+			authPromise(query) 
+				.then(({ uid, additionalClaims }) => admin.auth().createCustomToken(uid, additionalClaims))
+				.then(token => res.status(200).send({ token }))
+				.catch(e => res.status(e.status || 500).send(e))
+    })
 	})
 	
 	// listen for new messages and notify our backend

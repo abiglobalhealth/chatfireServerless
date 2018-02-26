@@ -81,6 +81,7 @@ key  | required | description
 - [x] Project description in Readme
 - [x] Enumerate configuration options in Readme
 - [ ] Add database rules to deployment package
+- [ ] Add authentication caching
 - [ ] Server examples (different configurations and permissions)
 - [ ] Client examples
 - [ ] Support sending attachments via cloud storage

@@ -28,7 +28,10 @@ module.exports = config => {
 
 			authPromise(query) 
 				.then(({ uid, additionalClaims }) => admin.auth().createCustomToken(uid, additionalClaims))
-				.then(token => res.status(200).send({ token }))
+				.then(token => {
+					res.set('Cache-Control', 'public, max-age=600, s-maxage=1800');
+					res.status(200).send({ token })
+				})
 				.catch(e => res.status(e.status || 500).send(e))
     })
 	})

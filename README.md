@@ -6,6 +6,7 @@ An ultra-simple chat backend built on Firebase and Firebase Cloud Functions.
 # use the firebase cli to initialize a project
 yarn global add firebase-tools
 
+mkdir example && cd example
 firebase init functions
 
 # add chatFireServerless

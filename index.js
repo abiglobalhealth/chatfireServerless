@@ -49,8 +49,13 @@ module.exports = config => {
 		  ])
     })
 
+   const onAttachment = functions.storage.object().onFinalize(object => {
+   	console.log(object)
+   })
+
 	return {
 		authenticate,
 		onNewMessage,
+		onAttachment,
 	}
 }

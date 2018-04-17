@@ -58,6 +58,7 @@ module.exports = config => {
    		userId,
    		at,
    		attachments: [{
+   			path: name,
    			url: mediaLink,
    		}],
    	})

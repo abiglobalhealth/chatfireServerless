@@ -49,8 +49,8 @@ module.exports = config => {
 		  ])
     })
 
-   const onAttachment = functions.storage.object().onFinalize(object => {
-   	console.log(object)
+   const onAttachment = functions.storage.object().onChange(event => {
+   	console.log(JSON.stringify(event, null, 2))
    })
 
 	return {

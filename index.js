@@ -49,9 +49,19 @@ module.exports = config => {
 		  ])
     })
 
-   const onAttachment = functions.storage.object().onChange(event => {
-   	console.log(JSON.stringify(event, null, 2))
-   })
+  const onAttachment = functions.storage.object().onChange(({ data }) => {
+   	const { name, mediaLink, timeCreated } = data
+   	const userId = name.split('/')[1]
+   	const at = new Date(timeCreated).getTime()
+
+   	return admin.database().ref(messages).child(userId).child(at).set({
+   		userId,
+   		at,
+   		attachments: [{
+   			url: mediaLink,
+   		}],
+   	})
+  })
 
 	return {
 		authenticate,
